@@ -1,11 +1,19 @@
 <?php
 
-if(!isset($_SESSION)) session_start();
+use App\Classes\Database;
+use App\classes\ErrorHandler;
 
-define("APP_ROOT",realpath(__DIR__."/../"));
+if (!isset($_SESSION)) session_start();
 
-require_once "../app/config/_env.php";
+define("APP_ROOT", realpath(__DIR__ . "/../"));
+define("URL_ROOT", "http://localhost/E-commerce/public/");
 
-require_once APP_ROOT ."/app/config/_env.php";
+require_once APP_ROOT . "/vendor/autoload.php";
 
-require_once APP_ROOT ."/app/routing/router.php";
+require_once APP_ROOT . "/app/config/_env.php";
+
+new Database();
+
+require_once APP_ROOT . "/app/routing/router.php";
+
+set_error_handler([new ErrorHandler(),'handleErrors']);
