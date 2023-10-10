@@ -4,16 +4,15 @@ use App\Routing\RouteDispatcher;
 
 $router = new AltoRouter();
 
-$router->setBasePath("/E-commerce/public");
+//$router->setBasePath("/E-commerce/public");
 
 $router->map("GET", "/", "App\Controllers\IndexController@show", "Home Route");
 
-// $match = $router->match();
+//Admin route
+$router->map("GET", "/admin", "App\Controllers\AdminController@index", "Admin Home");
 
-// if($match){
-//     echo "<pre>".print_r($match,true)."</pre>";
-// }else{
-//     echo "Not Match";
-// }
+$router->map("GET", "/admin/category/create", "App\Controllers\CategoryController@index", "Category Create");
+
+$router->map("POST", "/admin/category/create", "App\Controllers\CategoryController@store", "Category Store");
 
 new RouteDispatcher($router);

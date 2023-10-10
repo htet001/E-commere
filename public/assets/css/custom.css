@@ -1,0 +1,11 @@
+#createButton{
+    width: 80px;
+    margin-top: 20px;
+    float: right;
+}
+#nav{
+    margin-left: auto;
+}
+#navbar{
+    background-color: rgb(255, 157, 0);
+}

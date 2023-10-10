@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends("layout.master")
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to E-commerce Site</title>
-</head>
+@section("title","Developer")
 
-<body>
-    <h1>Welcome Guys</h1>
-    <img src="<?php echo URL_ROOT . "/assets/images/gal.png" ?>" alt="">
-</body>
-
-</html>
+@section('content')
+    <h1>Welcome</h1>
+@endsection

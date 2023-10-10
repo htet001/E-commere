@@ -44,6 +44,7 @@ class Mail{
         $this->mail->addAddress($data["to"],$data["to_name"]);
         $this->mail->Subject = $data["subject"];
         $this->mail->Body = make($data["filename"],$data);
+        $this->mail->AddEmbeddedImage('8c841499eaa0cd5a592a89332d6c9d70.jpg', 'logoimg');
 
         return $this->mail->send();
     }
