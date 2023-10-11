@@ -13,6 +13,7 @@ require_once APP_ROOT . "/vendor/autoload.php";
 require_once APP_ROOT . "/app/config/_env.php";
 
 new Database();
+new ErrorHandler();
 
 require_once APP_ROOT . "/app/routing/router.php";
 

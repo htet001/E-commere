@@ -4,22 +4,31 @@
 
     <div class="container">
         <h1 class="text-warning text-center">Create Category</h1>
-        <div class="col-md-8 offset-md-2">
+        <div class="row">
+        <div class="col-md-4 my-5">
+            <?php echo $__env->make("layout/admin_sidebar", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+        <div class="col-md-8">
             <!-- Form Start -->
-            <form action="/admin/category/create" method="post" enctype="multipart/form-data">
+            <form action=<?php use App\classes\CSRFToken;
+                echo URL_ROOT."admin/category/create";?> method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Category Name</label>
                     <input type="text" class="form-control" name="name">
                 </div>
-                <div class="form-group">
-                    <label for="file">Input File</label>
-                    <input type="file" class="form-control" name="file">
-                </div>
+                <input type="hidden" name="token" value="<?php CSRFToken::_token()?>">
                 <div class="row-no-gutters" id="createButton">
                     <button type="submit" class="btn btn-warning text-white">Create</button>
                 </div>
             </form>
             <!-- Form End -->
+            <div>
+            <ul class="list-group">
+                <li class="list-group-item rounded-0"><a href="/admin/category/all">All Category</a></li>
+                <li class="list-group-item rounded-0"><a href="/admin/category/create">Category Create</a></li>
+            </ul>
+            </div>
+        </div>
         </div>
     </div>
 

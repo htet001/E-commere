@@ -2,6 +2,7 @@
 
 use App\Classes\Mail;
 use App\classes\Session;
+use App\classes\ValidateRequest;
 
 require_once "../bootstrap/init.php";
 
