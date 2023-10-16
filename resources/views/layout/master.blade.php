@@ -15,6 +15,8 @@
 @yield('content')
 
     <script src="<?php echo URL_ROOT . 'assets/js/app.js' ?>"></script>
+    @yield("script")
+    
     <script src="<?php echo URL_ROOT . 'assets/js/query.js' ?>"></script>
     <script src="<?php echo URL_ROOT . 'assets/js/boot_bundle.js' ?>"></script>
 

@@ -3,10 +3,9 @@
 use App\Classes\Mail;
 use App\classes\Session;
 use App\classes\ValidateRequest;
+use App\Controllers\CategoryController;
 
 require_once "../bootstrap/init.php";
-
-
 // $mailer = new Mail();
 
 // $content = "What is Lorem Ipsum?

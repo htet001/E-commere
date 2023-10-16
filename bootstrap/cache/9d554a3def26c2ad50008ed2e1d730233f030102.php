@@ -15,6 +15,8 @@
 <?php echo $__env->yieldContent('content'); ?>
 
     <script src="<?php echo URL_ROOT . 'assets/js/app.js' ?>"></script>
+    <?php echo $__env->yieldContent("script"); ?>
+    
     <script src="<?php echo URL_ROOT . 'assets/js/query.js' ?>"></script>
     <script src="<?php echo URL_ROOT . 'assets/js/boot_bundle.js' ?>"></script>
 
