@@ -1,6 +1,6 @@
-@extends("layout.master")
+@extends('layout.master')
 
-@section("title","Admin Home Page")
+@section('title','Admin Home Page')
 
 @section('content')
 

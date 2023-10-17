@@ -19,6 +19,7 @@
     
     <script src="<?php echo URL_ROOT . 'assets/js/query.js' ?>"></script>
     <script src="<?php echo URL_ROOT . 'assets/js/boot_bundle.js' ?>"></script>
+    <script src="<?php echo URL_ROOT . 'assets/js/tether.min.js' ?>"></script>
 
 </body>
 </html>

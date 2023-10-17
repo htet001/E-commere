@@ -2,22 +2,28 @@
 
 namespace App\Controllers;
 
+use Dotenv\Validator;
 use App\classes\Request;
 use App\classes\Session;
+use App\Models\Category;
 use App\classes\Redirect;
 use App\classes\CSRFToken;
 use App\classes\UpdateFile;
+use App\Models\SubCategory;
 use App\classes\ValidateRequest;
-use App\Models\Category;
-use Dotenv\Validator;
 
 class CategoryController extends BaseControllers
 {
     public function index(){
         $categories = Category::all()->count();
         list($cats,$pages) = paginate(3,$categories,new Category());
+
+        $subcategories = SubCategory::all()->count();
+        list($sub_cats,$sub_pages) = paginate(3,$subcategories,new SubCategory());
+
         $cats = json_decode(json_encode($cats));
-        view("admin/category/create",compact('cats','pages'));
+        $sub_cats = json_decode(json_encode($sub_cats));
+        view("admin/category/create",compact('cats','pages','sub_cats','sub_pages'));
     }
 
     public function store(){
@@ -29,9 +35,12 @@ class CategoryController extends BaseControllers
             $validator = new ValidateRequest();
             $validator->checkValidate($post,$rules);
             if($validator->hasError()){
-                $cats = Category::all();
                 $errors = $validator->getError();
-                view("admin/category/create",compact('cats','errors'));
+
+                $categories = Category::all()->count();
+                list($cats,$pages) = paginate(3,$categories,new Category());
+                $cats = json_decode(json_encode($cats));
+                view("admin/category/create",compact('cats','errors','pages'));
             }else{
                 $slug = slug($post->name);
                 $con = Category::create([
@@ -39,11 +48,19 @@ class CategoryController extends BaseControllers
                     "slug" => $slug
                 ]);
                 if($con){
-                    $cats = Category::all();
                     $success = "    Category Created Successfully";
-                    view("admin/category/create",compact('cats','success'));
+
+                    $categories = Category::all()->count();
+                    list($cats,$pages) = paginate(3,$categories,new Category());
+                    $cats = json_decode(json_encode($cats));
+                    view("admin/category/create",compact('cats','success','pages'));
                 }else{
-                    echo "Fail";
+                    $errors = "    Category Created Fail";
+
+                    $categories = Category::all()->count();
+                    list($cats,$pages) = paginate(3,$categories,new Category());
+                    $cats = json_decode(json_encode($cats));
+                    view("admin/category/create",compact('cats','errors','success','pages'));
                 }
             }
         }else{
@@ -63,28 +80,65 @@ class CategoryController extends BaseControllers
         }
     }
 
+    // public function update(){
+    //     $post = Request::get('post');
+
+    //     $data = [
+    //         "name" => $post->name,
+    //         "token" => $post->token,
+    //         "id" => $post->id,
+    //         "con" =>''
+    //     ];
+
+    //     if(CSRFToken::checkToken($post->token)){
+    //         $rules = [
+    //             "name" => ["required" => true, "minLength" =>5,"unique" => "categories"]
+    //         ];
+
+    //         $validator = new ValidateRequest();
+    //         $validator->checkValidate($post,$rules);
+
+    //         if($validator->hasError()){
+    //             //header('HTTP/1.1 422 Validation Error!',true,422);
+    //             //echo json_encode($validator->getError());
+    //             $data['con'] = "Validation Error";
+    //             echo json_encode($data);
+    //         }else{
+    //             Category::where("id",$post->id)->update(["name"=>$post->name]);
+    //             $data['con'] = "Good To Go";
+    //             echo json_encode($data);
+    //         }
+    //     }else{
+    //         // header('HTTP/1.1 422 Token Mis-Match Error!',true,422);
+    //         // echo json_encode(["error"=>"Token Mis-Match Error"]);
+    //         $data['con'] = "Token Error";
+    //         echo json_encode($data);
+    //     }
+    // }
+
     public function update(){
         $post = Request::get('post');
-
         if(CSRFToken::checkToken($post->token)){
             $rules = [
-                "name" => ["required" => true, "minLength" =>5,"unique" => "categories"]
+                "name"=>["unique"=>"sub_categories","minLength"=>"5"]
             ];
-
             $validator = new ValidateRequest();
             $validator->checkValidate($post,$rules);
 
-            if($validator->hasError()){
-                header('HTTP/1.1 422 Validation Error!',true,422);
-                echo json_encode($validator->getError());
+            if($validator->getError()){
+                header('HTTP/1.1 422 Validation Error',true,422);
+                $errors = $validator->getError();
+                echo json_encode($errors);
+                exit;
             }else{
-                Category::where("id",$post->id)->update(["name"=>$post->name]);
-                $data['con'] = "Good To Go";
-                echo json_encode($data);
+                Category::where("id",$post->id)->update(["name"=>$post->name]);  
+                    echo "Sub Category Edited Successfully";
+                    exit;
             }
         }else{
-            header('HTTP/1.1 422 Token Mis-Match Error!',true,422);
-            echo json_encode(["error"=>"Token Mis-Match Error"]);
+            header('HTTP/1.1 422 Token Mis Match Error',true,422);
+            echo "Token Mis Match Error";
+            exit;
         }
     }
 }

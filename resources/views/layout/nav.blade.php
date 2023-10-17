@@ -18,20 +18,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/admin">Admin</a>
                     </li>
-                    <li>
-                        <div class="dropdown">
-                            <button class="english btn btn-secondary dropdown-toggle" style="background-color: purple;"
-                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Member
-                            </button>
-
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </li>
+                    <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown
+  </button>
+  <ul class="dropdown-menu">
+    <li><button class="dropdown-item" type="button">Action</button></li>
+    <li><button class="dropdown-item" type="button">Another action</button></li>
+    <li><button class="dropdown-item" type="button">Something else here</button></li>
+  </ul>
+</div>
                 </ul>
             </div>
         </div>
