@@ -80,42 +80,6 @@ class CategoryController extends BaseControllers
         }
     }
 
-    // public function update(){
-    //     $post = Request::get('post');
-
-    //     $data = [
-    //         "name" => $post->name,
-    //         "token" => $post->token,
-    //         "id" => $post->id,
-    //         "con" =>''
-    //     ];
-
-    //     if(CSRFToken::checkToken($post->token)){
-    //         $rules = [
-    //             "name" => ["required" => true, "minLength" =>5,"unique" => "categories"]
-    //         ];
-
-    //         $validator = new ValidateRequest();
-    //         $validator->checkValidate($post,$rules);
-
-    //         if($validator->hasError()){
-    //             //header('HTTP/1.1 422 Validation Error!',true,422);
-    //             //echo json_encode($validator->getError());
-    //             $data['con'] = "Validation Error";
-    //             echo json_encode($data);
-    //         }else{
-    //             Category::where("id",$post->id)->update(["name"=>$post->name]);
-    //             $data['con'] = "Good To Go";
-    //             echo json_encode($data);
-    //         }
-    //     }else{
-    //         // header('HTTP/1.1 422 Token Mis-Match Error!',true,422);
-    //         // echo json_encode(["error"=>"Token Mis-Match Error"]);
-    //         $data['con'] = "Token Error";
-    //         echo json_encode($data);
-    //     }
-    // }
-
     public function update(){
         $post = Request::get('post');
         if(CSRFToken::checkToken($post->token)){

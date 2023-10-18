@@ -2,18 +2,6 @@
 
 <?php $__env->startSection('content'); ?>
 
-<style>
-    .pagination{
-        margin-top: 20px;
-        justify-content: center;
-    }
-    .pagination > li{
-        padding: 5px 15px;
-        background: #ddd;
-        margin-right: 1px;
-    }
-</style>
-
     <div class="container">
         <h1 class="text-warning text-center">Create Category</h1>
         <div class="row">
@@ -75,7 +63,7 @@
                         <a href="/admin/category/all"><?php echo e($cat->name); ?></a>
                         <span style="float:right;"> 
                         <i class="fa fa-pencil-square-o text-primary" aria-hidden="true" id="modelCaller" onclick="subCatEdit('<?php echo e($cat->name); ?>','<?php echo e($cat->id); ?>')"></i>
-                        <a href="/admin/category/<?php echo e($cat->id); ?>/delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+                        <a href="/admin/subcategory/<?php echo e($cat->id); ?>/delete"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
                         </span>
                     </li>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

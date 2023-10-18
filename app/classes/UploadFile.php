@@ -2,8 +2,9 @@
 
 namespace App\classes;
 
-class UpdateFile{
+class UploadFile{
     protected $maxSize = 2097152;
+    protected $path;
 
     public function getName($file,$name=""){
         if($name === ""){
@@ -27,6 +28,10 @@ class UpdateFile{
         return in_array($ext,$validExt);
     }
 
+    public function getPath(){
+        return $this->path;
+    }
+
     public function move($file,$filename=""){
         $name = $this->getName($file);
         if($this->isImage($file)){
@@ -35,13 +40,16 @@ class UpdateFile{
                 if(!is_dir($path)){
                     mkdir($path);
                 }
+                $this->path = URL_ROOT ."/assets/uploads/" .$name;
                 $file_path = $path . $name;
                 return move_uploaded_file($file->file->tmp_name,$file_path);
             }else{
-                return "File Size Exceeded";
+                //return "File Size Exceeded";
+                return false;
             }
         }else{
-            return "Only image files are accepted";
+            //return "Only image files are accepted";
+            return false;
         }
     }
 }

@@ -1,11 +1,14 @@
 <?php
 namespace App\Controllers;
 
-use App\classes\CSRFToken;
 use App\classes\Request;
+use App\classes\Session;
+use App\classes\Redirect;
+use App\classes\CSRFToken;
+use App\Models\SubCategory;
 use App\classes\ValidateRequest;
 use App\Controllers\BaseControllers;
-use App\Models\SubCategory;
+
 
 class SubCategoryController extends BaseControllers{
     public function store(){
@@ -68,6 +71,17 @@ class SubCategoryController extends BaseControllers{
             header('HTTP/1.1 422 Token Mis Match Error',true,422);
             echo "Token Mis Match Error";
             exit;
+        }
+    }
+
+    public function delete($id){
+        $con = SubCategory::destroy($id);
+        if($con){
+            Session::flash("delete_success","SubCategory Delete Successfully");
+            Redirect::to("/admin/category/create");
+        }else{
+            Session::flash("delete_fail","SubCategory Deletion Fail");
+            Redirect::to("/admin/category/create");
         }
     }
 }

@@ -3,9 +3,21 @@
     margin-top: 20px;
     float: right;
 }
+
 #nav{
     margin-left: auto;
 }
+
 #navbar{
     background-color: rgb(255, 157, 0);
+}
+
+.pagination{
+    margin-top: 20px;
+    justify-content: center;
+}
+.pagination > li{
+    padding: 5px 15px;
+    background: #ddd;
+    margin-right: 1px;
 }
