@@ -131,33 +131,41 @@ class ProductController extends BaseControllers{
                         view("admin/product/edit",compact('cats','subcats','errors','product'));
                     }
                 }
-                        $product = Product::where("id",$id)->first();
-                        $product->name = $post->name;
-                        $product->price = $post->price;
-                        $product->cat_id = $post->cat_id;
-                        $product->sub_cat_id = $post->sub_cat_id;
-                        $product->description = $post->description;
-                        $product->image = $path;
+                $product = Product::where("id",$id)->first();
+                $product->name = $post->name;
+                $product->price = $post->price;
+                $product->cat_id = $post->cat_id;
+                $product->sub_cat_id = $post->sub_cat_id;
+                $product->description = $post->description;
+                $product->image = $path;
 
-                        if($product->update()){
-                            $products = Product::all();
-                            Session::flash("product_insert_success","Product Successfully Updated");
-                            //Redirect::to("home",compact('products'));
-                            
-                            view("admin/product/home",compact('products'));
-                        }else{
-                            $errors = ["Problem Update Product"];
-                            $cats = Category::all();
-                            $subcats = SubCategory::all();
-                            $product = Product::where("id",$id); 
-                            view("admin/product/create",compact('cats','subcats','errors','product'));
-                        }
+            if($product->update()){
+                    Session::flash("product_insert_success","Product Successfully Updated");
+                    $pds = Product::all();
+                    list($products,$pages) = paginate(3,count($pds),new Product());
+                    Redirect::to("/admin/product/home",compact('product','pages'));
+                }else{
+                    $errors = ["Problem Update Product"];
+                    $cats = Category::all();
+                    $subcats = SubCategory::all();
+                    $product = Product::where("id",$id)->first(); 
+                    view("admin/product/edit",compact('cats','subcats','errors','product'));
+                }
             } 
         }else{
-            $errors = ["Token Mis Match Error"];
-            $cats = Category::all();
-            $subcats = SubCategory::all();
-            view("admin/product/create",compact('cats','subcats','errors'));
+            Session::flash("Product Updated Fail","Product Updated Fail");
+            Redirect::to("admin/product/".$id."edit");
+        }
+    }
+
+    public function delete($id){
+        $con = Product::destroy($id);
+        if($con){
+            Session::flash("product_insert_success","Product Delete Successfully");
+            Redirect::to("/admin/product/home");
+        }else{
+            Session::flash("product_insert_success","Product Deletion Fail");
+            Redirect::to("/admin/product/home");
         }
     }
 }

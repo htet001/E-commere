@@ -11,8 +11,7 @@
             <?php if(\App\classes\Session::has("product_insert_success")): ?>
                 <?php echo e(\App\classes\Session::flash("product_insert_success")); ?>
 
-            <?php endif; ?>    
-
+            <?php endif; ?> 
         <!-- Table Start -->
         <table class="table table-bordered">
             <thead>
@@ -33,7 +32,7 @@
                 <td><?php echo e($product->price); ?></td>
                 <td>
                 <a href="/admin/product/<?php echo e($product->id); ?>/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <i class="fa fa-trash" aria-hidden="true"></i>
+                <a href="/admin/product/<?php echo e($product->id); ?>/delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

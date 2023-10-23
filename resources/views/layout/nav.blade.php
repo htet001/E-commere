@@ -12,6 +12,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0" id="nav">
+                <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/cart">
+                        Cart
+                        <span class="badge bg-danger" style="position: relative;top:-10px;left:-5px;" id="cart-count">0</span>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>

@@ -21,7 +21,7 @@ class SubCategoryController extends BaseControllers{
             $validator = new ValidateRequest();
             $validator->checkValidate($post,$rules);
 
-            if($validator->getError()){
+            if($validator->hasError()){
                 header('HTTP/1.1 422 Validation Error',true,422);
                 $errors = $validator->getError();
                 echo json_encode($errors);

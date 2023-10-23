@@ -12,8 +12,7 @@
         <div class="col-md-8">
             @if(\App\classes\Session::has("product_insert_success"))
                 {{\App\classes\Session::flash("product_insert_success")}}
-            @endif    
-
+            @endif 
         <!-- Table Start -->
         <table class="table table-bordered">
             <thead>
@@ -34,7 +33,7 @@
                 <td>{{$product->price}}</td>
                 <td>
                 <a href="/admin/product/{{$product->id}}/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <i class="fa fa-trash" aria-hidden="true"></i>
+                <a href="/admin/product/{{$product->id}}/delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
                 </tr>
                 @endforeach

@@ -43,7 +43,6 @@ function paginate($num_of_records,$total_record,$object){
     $pages = new Paginator($num_of_records,'p');
     $categories=  $object->genPaginate($pages->get_limit());
     $pages->set_total($total_record);
-
-    
+   
     return [$categories,$pages->page_links()];
 }

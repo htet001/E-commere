@@ -16,11 +16,12 @@
 @yield('content')
 
     <script src="<?php echo URL_ROOT . 'assets/js/app.js' ?>"></script>
+    <script src="<?php echo URL_ROOT . 'assets/js/query.js' ?>"></script>
+    <script src="<?php echo URL_ROOT . 'assets/js/custom.js' ?>"></script>
+    
     @yield("script")
     
-    <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/boot_bundle.js')}}"></script>
-    <script src="{{asset('js/query.js')}}"></script>
     <script src="{{asset('js/tether.min.js')}}"></script>
 
 </body>

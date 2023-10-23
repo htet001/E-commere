@@ -7,6 +7,10 @@ $router = new AltoRouter();
 //$router->setBasePath("/E-commerce/public");
 
 $router->map("GET", "/", "App\Controllers\IndexController@show", "Home Route");
+$router->map("POST", "/cart", "App\Controllers\IndexController@cart", "Cart Route");
+$router->map("GET", "/cart", "App\Controllers\IndexController@showCart", "Show Cart Route");
+$router->map("POST", "/payOut", "App\Controllers\IndexController@payOut", "payOut Route");
+
 
 //Admin route
 $router->map("GET", "/admin", "App\Controllers\AdminController@index", "Admin Home");
@@ -22,5 +26,11 @@ $router->map("GET", "/admin/product/create", "App\Controllers\ProductController@
 $router->map("POST", "/admin/product/create", "App\Controllers\ProductController@store", "Product Store");
 $router->map("GET", "/admin/product/[i:id]/edit", "App\Controllers\ProductController@edit", "Product Edit");
 $router->map("POST", "/admin/product/[i:id]/edit", "App\Controllers\ProductController@update", "Product Update");
+$router->map("GET", "/admin/product/[i:id]/delete", "App\Controllers\ProductController@delete", "Product Delete");
+
+$router->map("GET", "/user/login", "App\Controllers\UserController@showLoginForm", "User Show Login Form");
+$router->map("POST", "/user/login", "App\Controllers\UserController@login", "User Login");
+//$router->map("GET", "/user/register", "App\Controllers\UserController@showRegisterForm", "User Register Form");
+//$router->map("GET", "/user/register", "App\Controllers\UserController@register", "User Register Form");
 
 new RouteDispatcher($router);
