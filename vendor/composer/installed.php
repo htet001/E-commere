@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-Php_advance_22_29',
-        'version' => 'dev-Php_advance_22_29',
-        'reference' => 'f9a2455caf9d728559d2649327da8c40bca7c396',
+        'pretty_version' => 'dev-php_advance_54_63',
+        'version' => 'dev-php_advance_54_63',
+        'reference' => 'c408b620802df794854da7d6dff87ed4e4f0c845',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-Php_advance_22_29',
-            'version' => 'dev-Php_advance_22_29',
-            'reference' => 'f9a2455caf9d728559d2649327da8c40bca7c396',
+            'pretty_version' => 'dev-php_advance_54_63',
+            'version' => 'dev-php_advance_54_63',
+            'reference' => 'c408b620802df794854da7d6dff87ed4e4f0c845',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -187,6 +187,15 @@
             'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../psr/simple-cache',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'stripe/stripe-php' => array(
+            'pretty_version' => 'v13.0.0',
+            'version' => '13.0.0.0',
+            'reference' => 'a3d5c1677ef8bdba10800e7dc3825f56f573e039',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../stripe/stripe-php',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

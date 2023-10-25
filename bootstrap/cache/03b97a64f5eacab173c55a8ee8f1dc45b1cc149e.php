@@ -12,10 +12,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0" id="nav">
-                <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/cart">
-                        Cart
-                        <span class="badge bg-danger" style="position: relative;top:-10px;left:-5px;" id="cart-count">0</span>
+                            Cart
+                            <span class="badge bg-danger" style="position: relative;top:-10px;left:-5px;"
+                                id="cart-count">0</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -24,16 +25,26 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/admin">Admin</a>
                     </li>
-                    <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown
-  </button>
-  <ul class="dropdown-menu">
-    <li><button class="dropdown-item" type="button">Action</button></li>
-    <li><button class="dropdown-item" type="button">Another action</button></li>
-    <li><button class="dropdown-item" type="button">Something else here</button></li>
-  </ul>
-</div>
+                    <li>
+                    <div class="nav-item dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?php if(\App\Classes\Auth::check()): ?>
+                        <?php echo e(\App\Classes\Auth::user()->name); ?>
+
+                    <?php else: ?>
+                        Member
+                    <?php endif; ?>        
+                    </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <?php if(\App\Classes\Auth::check()): ?>
+                            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+                            <?php else: ?>
+                            <li><a class="dropdown-item" href="/user/login">Login</a></li>
+                            <li><a class="dropdown-item" href="/user/register">Register</a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                    </li>
                 </ul>
             </div>
         </div>

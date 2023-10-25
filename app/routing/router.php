@@ -10,27 +10,11 @@ $router->map("GET", "/", "App\Controllers\IndexController@show", "Home Route");
 $router->map("POST", "/cart", "App\Controllers\IndexController@cart", "Cart Route");
 $router->map("GET", "/cart", "App\Controllers\IndexController@showCart", "Show Cart Route");
 $router->map("POST", "/payOut", "App\Controllers\IndexController@payOut", "payOut Route");
+$router->map("GET", "/product/[i:id]/detail", "App\Controllers\IndexController@productDetail", "Product Detail Route");
 
+$router->map("POST", "/payment/stripe", "App\Controllers\PaymentController@stripePayment", "Stripe Payment Route");
 
-//Admin route
-$router->map("GET", "/admin", "App\Controllers\AdminController@index", "Admin Home");
-$router->map("GET", "/admin/category/create", "App\Controllers\CategoryController@index", "Category Create");
-$router->map("POST", "/admin/category/create", "App\Controllers\CategoryController@store", "Category Store");
-$router->map("GET", "/admin/category/[i:id]/delete", "App\Controllers\CategoryController@delete", "Category Delete");
-$router->map("POST", "/admin/category/update", "App\Controllers\CategoryController@update", "Category Update");
-$router->map("POST", "/admin/subcategory/create", "App\Controllers\SubCategoryController@store", "Sub Category Create");
-$router->map("POST", "/admin/subcategory/update", "App\Controllers\SubCategoryController@update", "Sub Category Update");
-$router->map("GET", "/admin/subcategory/[i:id]/delete", "App\Controllers\SubCategoryController@delete", "Sub Category Delete");
-$router->map("GET", "/admin/product/home", "App\Controllers\ProductController@home", "Product Home");
-$router->map("GET", "/admin/product/create", "App\Controllers\ProductController@create", "Product Create");
-$router->map("POST", "/admin/product/create", "App\Controllers\ProductController@store", "Product Store");
-$router->map("GET", "/admin/product/[i:id]/edit", "App\Controllers\ProductController@edit", "Product Edit");
-$router->map("POST", "/admin/product/[i:id]/edit", "App\Controllers\ProductController@update", "Product Update");
-$router->map("GET", "/admin/product/[i:id]/delete", "App\Controllers\ProductController@delete", "Product Delete");
-
-$router->map("GET", "/user/login", "App\Controllers\UserController@showLoginForm", "User Show Login Form");
-$router->map("POST", "/user/login", "App\Controllers\UserController@login", "User Login");
-//$router->map("GET", "/user/register", "App\Controllers\UserController@showRegisterForm", "User Register Form");
-//$router->map("GET", "/user/register", "App\Controllers\UserController@register", "User Register Form");
+require_once "admin_route.php";
+require_once "user_route.php";
 
 new RouteDispatcher($router);
