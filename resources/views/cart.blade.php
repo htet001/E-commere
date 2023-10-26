@@ -28,7 +28,7 @@
             </td>
         </tr>
         <tr style="visibility:hidden;" id="stripeTR">
-            <td style="text-align: right;">
+            <td colspan="7" style="text-align: right;">
                 <form action="/payment/stripe" method="post" style="display: none;" id="stripeForm">
                     <script src="https://checkout.stripe.com/checkout.js" async class="stripe-button" data-key="{{\App\Classes\Session::get('publishable_key')}}" data-description="Access for a year" data-amount="5000" data-image="http://localhost/E-Commerce/public//assets//images/emoji.png" data-email="{{\App\Classes\Auth::user()->email}}" data-zip-code="true" data-locale="auto">
                     </script>
@@ -153,9 +153,6 @@
                 $('#checkOutBtn').css("display", "none");
                 $('#stripeTR').css("visibility", "visible");
                 $('#stripeForm').css("display", "block");
-                // clearCart();
-                // showCartItem();
-                // showProducts([]);
             },
             errors: function(respone) {
                 console.log(respone.responeText);

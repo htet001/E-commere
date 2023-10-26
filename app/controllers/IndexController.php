@@ -18,10 +18,10 @@ class IndexController extends BaseControllers
         $count = Product::all()->count();
         list($pros, $pages) = paginate(6, $count, new Product());
         $products = json_decode(json_encode($pros));
-        $featured = Product::where("featured", 2)->get();
-        $myan = Product::where("featured", 3)->get();
-        $jersey = Product::where("featured", 1)->get();
-        view("home", compact('products', 'pages', 'featured', 'myan', 'jersey'));
+        $type = Product::where("type", 2)->get();
+        $myan = Product::where("type", 3)->get();
+        $cloth = Product::where("type", "Cloth")->get();
+        view("home", compact('products', 'pages', 'type', 'myan', 'cloth'));
     }
 
     public function cart()
@@ -62,8 +62,7 @@ class IndexController extends BaseControllers
         $items = Session::get("cart_items");
         $order_number = uniqid();
         $total = 0;
-
-        foreach ($items as $item) {
+        foreach ((array)$items as $item) {
             $total += $item->qty * $item->price;
             $od = new OrderDetail();
 

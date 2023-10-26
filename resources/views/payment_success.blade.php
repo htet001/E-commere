@@ -1,11 +1,11 @@
 @extends("layout.master")
 
-$section("title","Payment Success")
+@section("title","Payment Success")
 
 @section('content')
 <div class="container my-5">
     <h1 class="text-success bm-font-45">Payment Success</h1>
-    <a href="/">Go Back Homw</a>
+    <a href="/">Go Back Home</a>
 </div>
 @endsection
 

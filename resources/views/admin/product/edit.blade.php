@@ -10,12 +10,10 @@
             @include("layout.admin_sidebar")
         </div>
         <div class="col-md-8">
-        @include("layout.report_message")
+            @include("layout.report_message")
             <!-- Form Start -->
-            <form action="/admin/product/{{$product->id}}/edit" method="post" enctype="multipart/form-data"
-                class="table-bordered pb-5 px-5"
-                style="background-image: url(<?php echo URL_ROOT . "assets/images/back1.png" ?>);background-size: cover;">
-                <h3 class="text-center pt-5 text-warning">Product Create Page</h3>
+            <form action="/admin/product/{{$product->id}}/edit" method="post" enctype="multipart/form-data" class="table-bordered pb-5 px-5" style="background-image: url(<?php echo URL_ROOT . "assets/images/back1.png" ?>);background-size: cover;">
+                <h3 class="text-center pt-5 text-warning">Product Edit Page</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -44,10 +42,10 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="sub_cat_id" class="text-info">Sub Category</label>
-                            <select class="form-select" aria-label="Default select example" id="sub_cat_id"
-                                name="sub_cat_id">
+                            <select class="form-select" aria-label="Default select example" id="sub_cat_id" name="sub_cat_id">
                                 @foreach($subcats as $cat)
-                                <option value="{{$cat->id}}" <?php echo $cat->id == $product->sub_cat_id ? 'selected' : '' ?>>{{$cat->name}}</option>
+                                <option value="{{$cat->id}}" <?php echo $cat->id == $product->sub_cat_id ? 'selected' : '' ?>>{{$cat->name}}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
@@ -57,13 +55,12 @@
                     <label for="formFile" class="form-label text-info">Input File</label>
                     <input class="form-control" type="file" id="file" name="file">
                 </div>
-                
+
                 <input type="hidden" name="old_image" value="{{$product->image}}">
 
                 <div class="form">
                     <label for="description" class="text-info">Description</label>
-                    <textarea class="form-control" id="description" name="description"
-                        style="height: 100px">{{$product->description}}</textarea>
+                    <textarea class="form-control" id="description" name="description" style="height: 100px">{{$product->description}}</textarea>
                 </div>
                 <input type="hidden" name="token" value="{{\App\Classes\CSRFToken::_token()}}">
                 <div class="d-flex flex-row-reverse my-4">
@@ -72,7 +69,7 @@
                 </div>
             </form>
             <!-- Form End -->
-            
+
         </div>
     </div>
 </div>

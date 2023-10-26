@@ -19,25 +19,27 @@
         <tbody id="tablebody">
 
         </tbody>
-
+        <?php if(\App\Classes\Auth::check()): ?>
         <tr>
             <td colspan="7" style="text-align:right;" id="checkOutBtn">
                 <a><button class="btn-primary" onclick="payOut()">Checkout</button></a>
             </td>
         </tr>
-        <tr id="stripeTR">
-            <td style="text-align: right;">
-                <form action="/payment/stripe" method="post" id="stripeForm">
-                    <script src="https://checkout.stripe.com/checkout.js" async class="stripe-button" data-key="<?php echo e(\App\Classes\Session::get('publishable_key')); ?>" data-description="Access for a year" data-amount="5000" data-image="http://localhost/E-Commerce/public//assets//images/emoji.png" data-zip-code="true" data-locale="auto">
+        <tr style="visibility:hidden;" id="stripeTR">
+            <td colspan="7" style="text-align: right;">
+                <form action="/payment/stripe" method="post" style="display: none;" id="stripeForm">
+                    <script src="https://checkout.stripe.com/checkout.js" async class="stripe-button" data-key="<?php echo e(\App\Classes\Session::get('publishable_key')); ?>" data-description="Access for a year" data-amount="5000" data-image="http://localhost/E-Commerce/public//assets//images/emoji.png" data-email="<?php echo e(\App\Classes\Auth::user()->email); ?>" data-zip-code="true" data-locale="auto">
                     </script>
                 </form>
             </td>
         </tr>
+        <?php else: ?>
         <tr>
             <td colspan="7" style="text-align:right;">
                 <a href="user/login"><button class="btn-primary">Login to Checkout</button></a>
             </td>
         </tr>
+        <?php endif; ?>
     </table>
     <!-- Table End -->
 
@@ -149,9 +151,6 @@
                 $('#checkOutBtn').css("display", "none");
                 $('#stripeTR').css("visibility", "visible");
                 $('#stripeForm').css("display", "block");
-                // clearCart();
-                // showCartItem();
-                // showProducts([]);
             },
             errors: function(respone) {
                 console.log(respone.responeText);

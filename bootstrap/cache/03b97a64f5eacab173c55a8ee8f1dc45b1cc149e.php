@@ -1,7 +1,7 @@
 <div class="container-fluid" id="navbar">
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="<?php echo e(asset('images/online.jpg')); ?>" style="height: 30px;">
                 <span class="text-white">Online Market</span>
             </a>
@@ -13,37 +13,49 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0" id="nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/cart">
+                        <a class="nav-link active text-white" aria-current="page" href="/cart">
                             Cart
                             <span class="badge bg-danger" style="position: relative;top:-10px;left:-5px;"
                                 id="cart-count">0</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin">Admin</a>
-                    </li>
-                    <li>
-                    <div class="nav-item dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?php if(\App\Classes\Auth::check()): ?>
-                        <?php echo e(\App\Classes\Auth::user()->name); ?>
 
-                    <?php else: ?>
-                        Member
-                    <?php endif; ?>        
-                    </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <?php if(\App\Classes\Auth::check()): ?>
-                            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
-                            <?php else: ?>
-                            <li><a class="dropdown-item" href="/user/login">Login</a></li>
-                            <li><a class="dropdown-item" href="/user/register">Register</a></li>
-                            <?php endif; ?>
-                        </ul>
-                    </div>
+                    <?php
+
+                    use App\classes\Auth;
+
+                    if (Auth::check()) : ?>
+                    <?php if (Auth::user()->admin === 1) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/admin">Admin</a>
+                    </li>
+                    <?php endif; ?>
+                    <?php endif; ?>
+                    <li>
+                        <div class="nav-item dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <?php if(\App\Classes\Auth::check()): ?>
+                                <?php echo e(\App\Classes\Auth::user()->name); ?>
+
+                                <?php else: ?>
+                                Sign in
+                                <?php endif; ?>
+                            </button>
+                            <ul class="dropdown-menu" style="min-width: 100px;"
+                                aria-labelledby="navbarDropdownMenuLink">
+                                <?php if(\App\Classes\Auth::check()): ?>
+                                <a class="dropdown-item text-center" href="/user/logout">Logout</a>
+                                <?php else: ?>
+
+                                <a class="dropdown-item text-center" href="/user/login">Login</a>
+                                <a class="dropdown-item text-center" href="/user/register">Register</a>
+                                <?php endif; ?>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>

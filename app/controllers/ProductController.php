@@ -59,6 +59,7 @@ class ProductController extends BaseControllers
                         $product->price = $post->price;
                         $product->cat_id = $post->cat_id;
                         $product->sub_cat_id = $post->sub_cat_id;
+                        $product->type = $post->type;
                         $product->description = $post->description;
                         $product->image = $path;
 

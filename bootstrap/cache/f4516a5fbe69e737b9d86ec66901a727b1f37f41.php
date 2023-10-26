@@ -8,7 +8,7 @@
             <?php echo $__env->make("layout.admin_sidebar", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         </div>
         <div class="col-md-8">
-        <?php echo $__env->make("layout.report_message", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo $__env->make("layout.report_message", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <!-- Form Start -->
             <form action="/admin/product/create" method="post" enctype="multipart/form-data"
                 class="table-bordered pb-5 px-5"
@@ -52,13 +52,20 @@
                     </div>
                 </div>
                 <div class="mb-3">
+                    <label for="type" class="text-info">Type</label>
+                    <select class="form-select" aria-label="Default select example" id="type" name="type">
+                        <option>Cloth</option>
+                        <option>Food</option>
+                        <option>Drink</option>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="formFile" class="form-label text-info">Input File</label>
                     <input class="form-control" type="file" id="file" name="file">
                 </div>
                 <div class="form">
                     <label for="description" class="text-info">Description</label>
-                    <textarea class="form-control" id="description" name="description"
-                        style="height: 100px"></textarea>
+                    <textarea class="form-control" id="description" name="description" style="height: 100px"></textarea>
                 </div>
                 <input type="hidden" name="token" value="<?php echo e(\App\Classes\CSRFToken::_token()); ?>">
                 <div class="d-flex flex-row-reverse my-4">
@@ -67,7 +74,7 @@
                 </div>
             </form>
             <!-- Form End -->
-            
+
         </div>
     </div>
 </div>

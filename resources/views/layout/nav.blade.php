@@ -1,7 +1,7 @@
 <div class="container-fluid" id="navbar">
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="{{asset('images/online.jpg')}}" style="height: 30px;">
                 <span class="text-white">Online Market</span>
             </a>
@@ -13,36 +13,48 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0" id="nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/cart">
+                        <a class="nav-link active text-white" aria-current="page" href="/cart">
                             Cart
                             <span class="badge bg-danger" style="position: relative;top:-10px;left:-5px;"
                                 id="cart-count">0</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
                     </li>
+
+                    <?php
+
+                    use App\classes\Auth;
+
+                    if (Auth::check()) : ?>
+                    <?php if (Auth::user()->admin === 1) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin">Admin</a>
+                        <a class="nav-link text-white" href="/admin">Admin</a>
                     </li>
+                    <?php endif; ?>
+                    <?php endif; ?>
                     <li>
-                    <div class="nav-item dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    @if(\App\Classes\Auth::check())
-                        {{\App\Classes\Auth::user()->name}}
-                    @else
-                        Member
-                    @endif        
-                    </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            @if(\App\Classes\Auth::check())
-                            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
-                            @else
-                            <li><a class="dropdown-item" href="/user/login">Login</a></li>
-                            <li><a class="dropdown-item" href="/user/register">Register</a></li>
-                            @endif
-                        </ul>
-                    </div>
+                        <div class="nav-item dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                @if(\App\Classes\Auth::check())
+                                {{\App\Classes\Auth::user()->name}}
+                                @else
+                                Sign in
+                                @endif
+                            </button>
+                            <ul class="dropdown-menu" style="min-width: 100px;"
+                                aria-labelledby="navbarDropdownMenuLink">
+                                @if(\App\Classes\Auth::check())
+                                <a class="dropdown-item text-center" href="/user/logout">Logout</a>
+                                @else
+
+                                <a class="dropdown-item text-center" href="/user/login">Login</a>
+                                <a class="dropdown-item text-center" href="/user/register">Register</a>
+                                @endif
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>

@@ -9,7 +9,11 @@
 }
 
 #navbar{
-    background-color: rgb(255, 157, 0);
+    background-color: gray;
+}
+
+#navbar li{
+    padding-left: 15px;
 }
 
 .pagination{
